@@ -1,0 +1,51 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
+# Load the California Housing Dataset
+from sklearn.datasets import fetch_california_housing
+housing_data = fetch_california_housing(as_frame=True)
+df = housing_data.frame
+
+# Data Exploration
+print(df.head())
+print(df.info())
+print(df.describe())
+
+# Visualize the Data
+sns.pairplot(df)
+plt.show()
+
+# Check for Missing Values
+print(df.isnull().sum())
+
+# Split the Data into Features and Target Variable
+X = df.drop('MedHouseVal', axis=1)
+y = df['MedHouseVal']
+
+# Split the Data into Training and Testing Sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a Linear Regression Model
+model = LinearRegression()
+
+# Train the Model
+model.fit(X_train, y_train)
+
+# Make Predictions on the Testing Set
+y_pred = model.predict(X_test)
+
+# Evaluate the Model
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print("Mean Squared Error:", mse)
+print("Root Mean Squared Error:", rmse)
+print("Mean Absolute Error:", mae)
+print("R-squared:", r2)
