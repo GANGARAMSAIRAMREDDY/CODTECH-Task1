@@ -32,5 +32,6 @@ Model Evaluation:
 
 The trained model is used to make predictions on the testing data.
 The predictions are compared to the actual values using evaluation metrics like Mean Squared Error (MSE), Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R-squared.
-These metr
+![Screenshot 2024-11-25 223312](https://github.com/user-attachments/assets/d0fdb8ef-0d38-4474-8d38-f3eb9d5c55e3)
+
 
